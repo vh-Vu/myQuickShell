@@ -63,7 +63,7 @@ Rectangle{
                 delegate: Text {
                     text: shortDaysOfWeek[model.day] 
                     font.family: control.font
-                    font.pointSize: 14
+                    font.pointSize: 13
                     font.weight: Font.Bold
                     color: control.color
                     horizontalAlignment: Text.AlignHCenter
@@ -86,8 +86,8 @@ Rectangle{
                 property int days: 28
                 delegate: Text {
                     font.family: control.font
-                    font.pointSize: 14
-                    font.weight: isToday? Font.Bold : Normal
+                    font.pointSize: 13
+                    font.weight: isToday? Font.Bold : Font.Normal
                     color: isToday? '#6eb4fa' : control.color 
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter

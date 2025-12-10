@@ -33,38 +33,10 @@ Singleton {
     readonly property PwNode source: Pipewire.defaultAudioSource
     readonly property real volume: sink?.audio?.volume ?? 0
     readonly property bool muted: !!sink?.audio?.muted
-    // property var volume:  {
-    //     var v = sink.nickname
-    //     console.log(sink.audio.channels);
-    //     console.log(sink.audio.volume);
-    //     console.log(sink.audio.muted);
-    //     console.log(sink.audio.volumes);
-    //     console.log("name:", sink.name);
-    //     console.log("isSink:", sink.isSink);         
-    //     console.log("description:", sink.description);
-    //     console.log("type:", sink.type);
-    //     console.log("id:", sink.id);
-
-    //     if(isNaN(v)){
-    //         volumeW_wpctl.running = true
-    //         return;
-    //     }
-    //     return v;
-    // }
 
     readonly property bool sourceMuted: !!source?.audio?.muted
     readonly property real sourceVolume: source?.audio?.volume ?? 0
 
-    // property var test: volume
-
-    // Process{
-    //     id: volumeW_wpctl
-    //     command:["wpctl","get-volume",sink.id]
-    //     stdout: StdioCollector {
-    //     onStreamFinished: root.volume = this.text.substring(8)
-    //     }
-    // }
-    
 
 
     function setVolume(newVolume: real): void {

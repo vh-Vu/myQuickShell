@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
 
-import "./widget"
+import "../widget"
+import "../services"
 Item{
-    anchors.centerIn: parent
     WeatherAnhCalendarWidget{
         id: calendarPopUp
     }

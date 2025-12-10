@@ -4,10 +4,9 @@ import QtQuick
 import QtQuick.Controls
 
 
-
+// Prototype only
 Rectangle{
     id:root
-    property string states: ["","","",""]
     property int reminding: 400
     readonly property int batteryWidth: 60;
     readonly property int batteryHeight: 20
@@ -16,7 +15,7 @@ Rectangle{
     color: 'transparent'
     width: batteryWidth
     height: batteryHeight
-
+    
     // border.width : 3
     // radius: 7
     
@@ -59,12 +58,9 @@ Rectangle{
         font.pointSize: 11
         anchors{
             centerIn: background
-            //fill: pare
         }
         font.weight: Font.Bold
-        // anchors{
-        //     verticalCenter: parent.verticalCenter
-        // }
+
     }
 
     Text{

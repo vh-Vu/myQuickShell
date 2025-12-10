@@ -9,9 +9,10 @@ Rectangle{
     id:root
     property string states: ["󰲝","󰲜","󰤟","󰤩","󰤭","󰤨","󰤥","󰤢"]
     color: 'transparent'
-    width: 40
+    width: 35
     height: childrenRect.height
-    
+    // border.width: 3
+    // border.color: "white"
     Text{
         id: stateText
         text: "󰲝"
@@ -19,6 +20,7 @@ Rectangle{
         font.pointSize: 14
         anchors{
             verticalCenter: parent.verticalCenter
+            centerIn: parent
         }
     }
 }

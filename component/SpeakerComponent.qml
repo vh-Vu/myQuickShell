@@ -9,8 +9,14 @@ import "../services/"
 Rectangle{
     id:root
     property string states: ["","","",""]
-    property string currSate: getState(this.volume)
     property real volume: (Audio.volume*100).toFixed(0)
+    readonly property int fontSize: parent.fontSize
+    readonly property string textColor: parent.textColor
+    property int myWidth: parent.componentWidth
+    property string myFont: parent.fontName
+    
+    property string currSate: getState(this.volume)
+
     function getState(volume){
         if(!volume) return states[0];
         if(volume < 33) return states[1];
@@ -18,39 +24,36 @@ Rectangle{
         return states[3];
     }
     color: 'transparent'
-    width: 30
-    // anchors{
-    //     right: parent.right
-    //     verticalCenter: parent.verticalCenter
-    // }
+    width: myWidth
+
     height: childrenRect.height
     Text{
         id: stateText
         text: currSate
-        color: "#f0f0f0"
+        color: root.textColor
         font{
-            family: "FiraCode Nerd Font"
-            pointSize: 14
+            family: root.myFont
+            pointSize: root.fontSize
             weight : Font.Bold
         }
         anchors{
+            right: parent.right
             verticalCenter: parent.verticalCenter
-            //centerIn: parent
         }
     }
     Text{
         id: volumeText
-        text: ""
-        color: "#f0f0f0"
+        text: root.volume
+        color: root.textColor
+        visible: false
         font{
-            family: "FiraCode Nerd Font"
-            pointSize: 14
+            family: root.myFont
+            pointSize: root.fontSize
             weight : Font.Bold
         }
         anchors{
-            left : stateText.right
+            right: parent.right
             verticalCenter: parent.verticalCenter
-            leftMargin: 7
         }
 
     }
@@ -78,23 +81,38 @@ Rectangle{
                     }
             }
 
-            wheel.accepted = true; // Chặn lan truyền sự kiện
+            wheel.accepted = true; 
         }
         states: [State {
             name: "hovered"
             when: kh.containsMouse
             PropertyChanges{
-                // target: volumeText
-                // text: root.volume
-                target: stateText
-                text: `${currSate} ${root.volume}`
+                target: volumeText
+                visible: true
             }
             PropertyChanges{
                 target:root
-                width: 60
+                width: myWidth*2
             }
+            PropertyChanges{
+                target:stateText
+                anchors.rightMargin: root.myWidth/4
+            }
+            
+            AnchorChanges { target: stateText; anchors.right : volumeText.left }
         }
         ]
+        transitions: Transition {
+            AnchorAnimation { duration: 300 }
+            PropertyAnimation{
+                properties: "width"
+                duration: 200
+            }
+            PropertyAnimation{
+                properties:"visible"
+                duration: 160
+            }
+        }
     }
     Process {   
         id: audioPanel
@@ -111,8 +129,6 @@ Rectangle{
             kh.enabled = true
         }
     }
-    
-    
 
 }
 

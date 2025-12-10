@@ -1,5 +1,5 @@
 import QtQuick
-
+import "../services"
 Text {
     text: HyprlandData.activeWorkspace
 

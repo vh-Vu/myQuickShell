@@ -6,12 +6,15 @@ import Quickshell.Hyprland
 
 import "./system-info/"
 import "./widget/"
-
+import "./component/"
 
 
 
 Scope {
-
+  id: root
+  property int monitorWidth: 2560
+  property int monitorHeight: 1440
+  
   Variants {
     model: Quickshell.screens
       PanelWindow {
@@ -78,65 +81,60 @@ Scope {
           }
       }
     
-      Workspace {}
-      ClockWidget {
-        id: clockWidget
+      //Workspace {}
+      LeftBarComponent{
+        anchors{
+          left: parent.left
+          verticalCenter: parent.verticalCenter
+        }
+      }
+      CenterBarComponent{
+        anchors.centerIn: parent
       }
 
-      NetworkSpeed{
-        id: networkSpeedStatus
+      RightBarComponent{
         anchors{
-              right: performenceStatus.left
-              verticalCenter: parent.verticalCenter
-        }
-      }
-      Performence{
-        id: performenceStatus
-        anchors{
-              right: vpnStatus.left
-              verticalCenter: parent.verticalCenter
-        }
-      }
-      VPN{
-        id: vpnStatus
-        anchors{
-              right: networkStatus.left
-              verticalCenter: parent.verticalCenter
-        }
-      }
-
-      Network{
-        id: networkStatus
-        anchors{
-              right: buletoothStatus.left
-              verticalCenter: parent.verticalCenter
-        }
-      }
-
-      Bluetooth{
-        id: buletoothStatus
-        anchors{
-              right: speakerStatus.left
-              verticalCenter: parent.verticalCenter
-        }
-      }
-
-      Speaker {
-        id: speakerStatus
-        anchors{
-              right: powerStatus.left
-              verticalCenter: parent.verticalCenter
-        }
-      }
-          
-      
-      Power{
-        id: powerStatus
-         anchors{
           right: parent.right
           verticalCenter: parent.verticalCenter
         }
       }
+      // ClockWidget {
+      //   id: clockWidget
+      // }
+
+
+      // NetworkSpeed{
+      //   id: networkSpeedStatus
+      //   anchors{
+      //         right: performenceStatus.left
+      //         verticalCenter: parent.verticalCenter
+      //   }
+      // }
+      // Performence{
+      //   id: performenceStatus
+      //   anchors{
+      //         right: vpnStatus.left
+      //         verticalCenter: parent.verticalCenter
+      //   }
+      // }
+      // VPN{
+      //   id: vpnStatus
+      //   anchors{
+      //         right: networkStatus.left
+      //         verticalCenter: parent.verticalCenter
+      //   }
+      // }
+
+      // Network{
+      //   id: networkStatus
+      //   anchors{
+      //         right: buletoothStatus.left
+      //         verticalCenter: parent.verticalCenter
+      //   }
+      // }
+
+
+     
       
     }
   }

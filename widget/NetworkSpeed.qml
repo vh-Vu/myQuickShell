@@ -2,7 +2,7 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 import QtQuick.Controls
-
+import "../services"
 
 
 Rectangle{
@@ -13,7 +13,7 @@ Rectangle{
     height: childrenRect.height
     Text{
         id: stateText
-        text: " 12 MB |  1.2 MB"
+        text: Power.log()   //" 12 MB |  1.2 MB"
         color: "#f0f0f0"
         font.pointSize: 14
         anchors{
