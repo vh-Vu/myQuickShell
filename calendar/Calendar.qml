@@ -3,6 +3,7 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Shapes
 import QtQuick.Controls
 import QtQuick.Layouts
+import "../services"
 
 // cpu use, temp, memory, power consum, 
 Rectangle{
@@ -16,6 +17,7 @@ Rectangle{
     property var shortDaysOfWeek: ["SUN","MON","TUE","WED", "THU", "FRI","SAT"]
     property var monthsShortName:["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     property string dayOfWeek: daysOfWeek[today.getDay()]
+    //property var today: Time.date
 
     Rectangle {
         anchors.fill: parent
@@ -40,7 +42,7 @@ Rectangle{
             anchors.horizontalCenter: parent.horizontalCenter
             Text{
                 anchors.horizontalCenter: parent
-                text: `${dayOfWeek}, ${control.currentDay} ${monthsShortName[grid.month]} ${grid.year}`;
+                text: `${Time.dateOfWeek}, ${Time.date} ${Time.monthName} ${Time.year}`;
                 font.pointSize: 20
                 font.family: control.font
                 font.weight: Font.Bold
@@ -94,7 +96,7 @@ Rectangle{
                     opacity: model.month === grid.month ? 1 : 0.3
                     text: model.day
                     required property var model
-                    readonly property bool isToday: model.day === control.currentDay && model.month == grid.month && model.year == grid.year
+                    readonly property bool isToday: model.day == Time.date && model.month == Time.month-1 && model.year == Time.year
                 }
             }
             

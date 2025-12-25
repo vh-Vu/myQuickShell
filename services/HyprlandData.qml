@@ -2,6 +2,8 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
+
 import Quickshell.Hyprland
 
 
@@ -22,16 +24,15 @@ Singleton{
 
 
     
-    // Process {
-    //     id: getActiveWorkspace
-    //     command: ["hyprctl", "activeworkspace", "-j"]
-    //     stdout: StdioCollector {
-    //         id: activeWorkspaceCollector
-
-    //         onStreamFinished: {
-    //             root.activeWorkspace = JSON.parse(activeWorkspaceCollector.text).id;
-    //              console.log( root.activeWorkspace);
-    //         }
-    //     }
-    // }
+    Process {
+        id: getActiveWorkspace
+        running: true
+        command: ["hyprctl", "activeworkspace", "-j"]
+        stdout: StdioCollector {
+            id: activeWorkspaceCollector
+            onStreamFinished: {
+                root.activeWorkspace = JSON.parse(activeWorkspaceCollector.text).id;
+            }
+        }
+    }
 }

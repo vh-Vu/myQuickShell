@@ -1,26 +1,44 @@
 // Time.qml
 
-// with this line our type becomes a Singleton
 pragma Singleton
 
 import Quickshell
 import QtQuick
 
-// your singletons should always have Singleton as the type
 Singleton {
   id: root
   property string time :
   {
-    // The passed format string matches the default output of
-    // the `date` command.
-    //    Qt.formatDateTime(clock.date, "ddd MMM d hh:mm:ss AP t yyyy")
 
     Qt.formatTime(clock.date, "hh:mmAP").substring(0, 5);
+  }
+
+  property string date: {
+      Qt.formatDate(clockHour.date, "dd");
+  }
+  property string dateOfWeek: {
+      Qt.formatDate(clockHour.date, "dddd");
+  }
+
+  property string month: {
+      Qt.formatDate(clockHour.date, "MM");
+  }
+  property string monthName: {
+      Qt.formatDate(clockHour.date, "MMM");
+  }
+
+  property string year: {
+      Qt.formatDate(clockHour.date, "yyyy");
   }
 
   SystemClock {
     id: clock
     precision: SystemClock.Minutes
+  }
+
+   SystemClock {
+    id: clockHour
+    precision: SystemClock.hours
   }
 
 //   Process {
