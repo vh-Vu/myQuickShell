@@ -106,11 +106,12 @@ Rectangle{
             AnchorAnimation { duration: 300 }
             PropertyAnimation{
                 properties: "width"
-                duration: 200
+                duration: 300
+                easing.type: Easing.OutCubic
             }
             PropertyAnimation{
                 properties:"visible"
-                duration: 160
+                duration: 290
             }
         }
     }
