@@ -1,6 +1,5 @@
 pragma Singleton
 
-//import qs.config
 import Quickshell
 import Quickshell.Services.Pipewire
 import QtQuick
@@ -37,7 +36,16 @@ Singleton {
     readonly property bool sourceMuted: !!source?.audio?.muted
     readonly property real sourceVolume: source?.audio?.volume ?? 0
 
+    Process {   
+        id: audioPanel
+        running: false
+        command: [ "pavucontrol" ]
+    }
 
+
+    function openPannel(){
+        audioPanel.running = true;
+    }
 
     function setVolume(newVolume: real): void {
         if (sink?.ready && sink?.audio) {
@@ -45,6 +53,8 @@ Singleton {
             sink.audio.volume = Math.max(0, newVolume);//Math.min(Config.services.maxVolume, newVolume)
         }
     }
+
+    
 
     function incrementVolume(amount: real): void {
         setVolume(volume + amount); //(amount || Config.services.audioIncrement)

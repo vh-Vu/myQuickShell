@@ -18,13 +18,22 @@ Rectangle{
     height: parent.height
     width: parent.width/2.56
     color: "transparent"
-    border.width: 3 
 
     NetworkComponent{
         id: networkStatus
         anchors{
+              right: vpnStatus.left
+              verticalCenter: parent.verticalCenter
+              rightMargin: fontSize/2
+        }
+    }
+
+    VPNComponent{
+        id: vpnStatus
+        anchors{
               right: buletoothStatus.left
               verticalCenter: parent.verticalCenter
+              rightMargin: fontSize/2
         }
     }
 
@@ -33,6 +42,7 @@ Rectangle{
         anchors{
               right: speakerStatus.left
               verticalCenter: parent.verticalCenter
+              rightMargin: fontSize/2
         }
     }
     SpeakerComponent{
@@ -40,6 +50,7 @@ Rectangle{
         anchors{
               right: isLaptopBattery ? powerStatus.left : healthyStatus.left
               verticalCenter: parent.verticalCenter
+              rightMargin: fontSize/2
         }
     }
 

@@ -1,6 +1,4 @@
-import Quickshell
 import QtQuick
-import QtQuick.Controls
 import "../services/"
 
 Rectangle{

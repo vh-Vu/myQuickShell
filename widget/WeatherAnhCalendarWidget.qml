@@ -1,8 +1,7 @@
 import QtQuick.Window
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-import "../calendar/"
-import "../weather/"
+
 
 
 Popup {
@@ -26,8 +25,8 @@ Popup {
             realFeel: 23
         }
 
-        Calendar{
-            x: 300;
+        MyCalendar{
+            x: 300
             y: 10
         }
 

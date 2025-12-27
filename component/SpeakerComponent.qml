@@ -63,13 +63,8 @@ Rectangle{
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         enabled: true
-        onClicked:{
-            if (kh.enabled) {
-                audioPanel.running = true;
-                kh.enabled = false;
-                clickDebouncer.running = true;
-            }
-        }
+        onClicked: Audio.openPannel();
+
         onWheel: (wheel) => {
             var delta = wheel.angleDelta.y;
             var numSteps = delta / 120;
@@ -111,23 +106,8 @@ Rectangle{
             }
             PropertyAnimation{
                 properties:"visible"
-                duration: 290
+                duration: 200
             }
-        }
-    }
-    Process {   
-        id: audioPanel
-        command: [ "pavucontrol" ]
-    }
-
-
-    Timer {
-        id: clickDebouncer
-        interval: 200
-        running: false
-        repeat: false
-        onTriggered: {
-            kh.enabled = true
         }
     }
 
