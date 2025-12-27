@@ -25,11 +25,23 @@ Rectangle{
     height: childrenRect.height
     
     Text{
+        id: icon
         text: stateIcon
         color: currentColor
         font.pointSize: fontSize
         anchors{
             centerIn: parent
+        }
+    }
+
+    Text{
+        text: `⇣${Network.netDown} ⇡${Network.netUp}` 
+        color: currentColor
+        font.pointSize: fontSize
+        anchors{
+            verticalCenter: parent.verticalCenter
+            right: icon.left
+            rightMargin: fontSize
         }
     }
 

@@ -84,8 +84,8 @@ Singleton {
         repeat: true
         interval: 250
         onTriggered: {
-            ticks = (ticks+1)%20;
-            switch(ticks%4){
+            ticks = (ticks+1)%24;
+            switch(ticks%8){
                 case 0:
                     getCpuUsed.running = true;
                     break;

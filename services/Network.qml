@@ -15,8 +15,12 @@ Singleton {
     property string primaryConnectionType: "" 
     property string state: "" 
     property int wifiStrength: 0
-
-
+    property string defaultNetworkInterface: ""
+    property real netDownOld: 0
+    property real netUpOld: 0
+    property real netDown: 0.0
+    property real netUp: 0.0
+    property int byteToMB: 2_097_152
 
     Process{
         id: networkMonitor
@@ -77,7 +81,52 @@ Singleton {
         }
     }
 
+    Process {
+        id: getDefaultInterface
+        running: true
+        command: ["sh","-c","nmcli -t -f DEVICE,STATE device | grep ':connected' | head -n 1 | cut -d: -f1"]
+        stdout: StdioCollector {
+            id: stdoutDefaultInterface
+            onStreamFinished: {
+                root.defaultNetworkInterface = stdoutDefaultInterface.text.trim();
+            }
+        }
+
+    }
+
+    Process {
+        id: getNetworkMeter
+        running: false
+        command: ["sh","-c",`cat /proc/net/dev | grep '${root.defaultNetworkInterface}' | awk '{print $2, $10}'`]
+        stdout: StdioCollector {
+            id: stdoutNetworkMeter
+            onStreamFinished: {
+                var output = stdoutNetworkMeter.text.split(" ");
+                if (output.length < 2) return;
+                var netDownNew = parseFloat(output[0]);
+                var netUpNew = parseFloat(output[1]);
+                if(root.netDownOld > 0){
+                    root.netDown = ((netDownNew - netDownOld)/byteToMB).toFixed(1);
+                    root.netUp = ((netUpNew - netUpOld)/byteToMB).toFixed(1);
+                }
+                root.netDownOld = netDownNew
+                root.netUpOld = netUpNew
+            }
+        }
+    }
+
+    Timer{
+        id: timerNetworkMeter
+        running: true
+        repeat: true
+        interval: 2000
+        onTriggered: getNetworkMeter.running = true;
+    }
+
+
+
     function updateConnectionInfo(){
+        getDefaultInterface.running = true;
         getPrimaryConnection.running = true;
         getState.running = true;
         getWifiStrength.running = true;
