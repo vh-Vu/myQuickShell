@@ -4,7 +4,7 @@ import "../services/"
 Rectangle{
     id:root
     property int myWidth: parent.componentWidth
-    property string stateIcon: "󰍹"
+    property string stateIcon: ""
     property string currentColor: parent.textColor
     readonly property int fontSize: parent.fontSize
 

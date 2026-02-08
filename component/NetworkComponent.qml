@@ -35,9 +35,10 @@ Rectangle{
     }
 
     Text{
-        text: `⇣${Network.netDown} ⇡${Network.netUp}` 
+        text: ` ${Network.netDown}  ${Network.netUp}` 
         color: currentColor
         font.pointSize: fontSize
+        // font.wordSpacing: 
         anchors{
             verticalCenter: parent.verticalCenter
             right: icon.left

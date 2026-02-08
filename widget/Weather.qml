@@ -11,9 +11,9 @@ Rectangle{
     height: 370
     width: 280
     radius: 10
-    color: "transparent" // Đặt màu nền trong suốt
-
-
+    color: "transparent" 
+    anchors.verticalCenter: parent.verticalCenter
+    
     Rectangle {
         anchors.fill: parent
         radius: 10
@@ -30,9 +30,6 @@ Rectangle{
     Column {
         x:40
         y:20
-        // property object colorMap:{
-            
-        // }
 
         spacing: 5
         Text {

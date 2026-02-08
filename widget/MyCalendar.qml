@@ -18,7 +18,7 @@ Rectangle{
     property var monthsShortName:["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     property string dayOfWeek: daysOfWeek[today.getDay()]
     //property var today: Time.date
-
+    anchors.verticalCenter: parent.verticalCenter
     Rectangle {
         anchors.fill: parent
         radius: 10

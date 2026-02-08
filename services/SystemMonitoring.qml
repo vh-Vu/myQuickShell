@@ -59,7 +59,7 @@ Singleton {
         stdout: StdioCollector {
             id: stdoutMemUsed
             onStreamFinished: {
-                memUsedDisplay = (parseFloat(stdoutMemUsed.text)/1_000_000).toFixed(1)
+                memUsedDisplay = (parseFloat(stdoutMemUsed.text)/1_048_576).toFixed(1)
             }
         }
     }

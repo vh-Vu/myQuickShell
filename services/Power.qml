@@ -11,6 +11,5 @@ Singleton {
     readonly property bool isLaptopBattery: displayDevice.isLaptopBattery
     property var onBattery: UPower.onBattery
     property var state: UPowerDevice.state
-
     
 }
